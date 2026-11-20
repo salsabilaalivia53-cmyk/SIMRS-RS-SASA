@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <title>Masuk | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+  <main class="login-layout">
+    <section class="login-intro">
+      <a class="brand brand-light" href="index.html" aria-label="SIMRS SASA">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span>
+      </a>
+      <div class="intro-content">
+        <span class="eyebrow">SISTEM INFORMASI MANAJEMEN RUMAH SAKIT</span>
+        <h1>Pelayanan lebih baik, dimulai dari sistem yang terintegrasi.</h1>
+        <p>Kelola informasi rumah sakit dengan lebih mudah melalui satu platform yang dirancang untuk mendukung pelayanan kesehatan.</p>
+        <div class="intro-note"><span class="status-dot"></span> Sistem informasi rumah sakit terpadu</div>
+      </div>
+      <div class="intro-footer">© <span data-year></span> Rumah Sakit Sehat Abadi</div>
+    </section>
+    <section class="login-panel">
+      <div class="login-card">
+        <div class="login-mobile-brand brand">
+          <span class="brand-mark" aria-hidden="true">S</span>
+          <span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span>
+        </div>
+        <div class="login-heading">
+          <span class="eyebrow">SELAMAT DATANG</span>
+          <h2>Masuk ke akun Anda</h2>
+          <p>Silakan masukkan informasi akun untuk melanjutkan.</p>
+        </div>
+        <form id="loginForm" class="login-form">
+          <label for="username">Nama pengguna</label>
+          <div class="input-wrap">
+            <span class="input-icon" aria-hidden="true">◎</span>
+            <input id="username" name="username" type="text" autocomplete="username" placeholder="Masukkan nama pengguna" required>
+          </div>
+          <label for="password">Kata sandi</label>
+          <div class="input-wrap">
+            <span class="input-icon" aria-hidden="true">⌑</span>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
+            <button class="password-toggle" type="button" aria-label="Tampilkan kata sandi" data-password-toggle>◉</button>
+          </div>
+          <div class="login-options"><label class="remember-option"><input type="checkbox" name="remember"> <span>Ingat saya</span></label><span class="secure-label">Akses staf rumah sakit</span></div>
+          <button class="button button-primary login-submit" type="submit">Masuk ke SIMRS <span aria-hidden="true">→</span></button>
+          <p class="form-message" id="loginMessage" role="alert" aria-live="polite"></p>
+        </form>
+        <p class="login-disclaimer">Tampilan demo antarmuka. Autentikasi pada versi ini belum terhubung ke server.</p>
+      </div>
+      <div class="login-bottom">Butuh bantuan? Hubungi administrator rumah sakit.</div>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

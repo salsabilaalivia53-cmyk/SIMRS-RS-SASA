@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#102a43">
+  <title>Detail Kunjungan | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page"><div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+    <div class="sidebar-label">MENU UTAMA</div><nav class="sidebar-nav" aria-label="Navigasi utama">
+      <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+      <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+      <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+      <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+      <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+      <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+      <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+      <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+      <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+      <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+  </aside>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <main class="main-area"><header class="topbar">
+    <div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><a href="rawat-jalan.html">Rawat Jalan</a><span class="breadcrumb-separator">/</span><strong data-breadcrumb>Detail Kunjungan</strong></div></div>
+    <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Keluar" data-logout>⌄</button></div></div>
+  </header>
+  <div class="page-content">
+    <section class="welcome-row"><div><span class="eyebrow">PELAYANAN RAWAT JALAN</span><h1 data-page-title>Detail Kunjungan</h1><p>Informasi pasien dan status pelayanan kunjungan.</p></div><a class="button button-secondary" href="rawat-jalan.html">← Kembali ke daftar</a></section>
+    <section class="panel detail-error" id="visitDetailError" hidden></section>
+    <div id="visitDetailContent" hidden>
+      <section class="panel visit-detail-hero">
+        <div class="detail-patient-heading"><span class="detail-patient-avatar">♙</span><div><span class="eyebrow">INFORMASI PASIEN</span><h2 id="detailPatientName">-</h2><p id="detailMedicalRecord">-</p></div></div>
+        <div class="detail-queue-block"><small>NOMOR ANTREAN</small><strong id="detailQueueNumber">-</strong><span id="detailVisitStatus" class="visit-status-badge">-</span></div>
+      </section>
+      <section class="detail-status-panel panel">
+        <div><h2>Status pelayanan</h2><p>Perubahan status tersimpan otomatis ke data kunjungan.</p></div>
+        <div class="detail-status-actions"><button class="button button-call" id="detailCallButton" type="button">Panggil pasien</button><label class="sr-only" for="detailStatusSelect">Pilih status kunjungan</label><select id="detailStatusSelect"><option value="Menunggu">Menunggu</option><option value="Dipanggil">Dipanggil</option><option value="Sedang Diperiksa">Sedang Diperiksa</option><option value="Selesai">Selesai</option><option value="Batal">Batal</option></select><button class="button button-primary" id="detailSaveStatus" type="button">Simpan status</button></div>
+      </section>
+      <div class="visit-detail-grid">
+        <section class="panel detail-information-panel"><div class="panel-heading"><div><h2>Identitas pasien</h2><p>Data dari rekam pasien terdaftar</p></div><span class="detail-section-icon">♙</span></div><dl class="detail-definitions" id="detailPatientFields"></dl></section>
+        <section class="panel detail-information-panel"><div class="panel-heading"><div><h2>Informasi kunjungan</h2><p>Rincian pendaftaran pelayanan</p></div><span class="detail-section-icon">⌂</span></div><dl class="detail-definitions" id="detailVisitFields"></dl></section>
+        <section class="panel detail-complaint-panel"><div class="panel-heading"><div><h2>Keluhan utama</h2><p>Keluhan saat pendaftaran kunjungan</p></div></div><p id="detailComplaint">-</p></section>
+      </div>
+    </div>
+    <div class="toast-message visit-toast" id="visitStatusToast" role="status" aria-live="polite"></div>
+    <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+  </div></main></div><script src="script.js"></script></body></html>

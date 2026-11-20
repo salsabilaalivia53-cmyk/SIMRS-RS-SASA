@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#102a43">
+  <title>Rekam Medis | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page"><div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+    <div class="sidebar-label">MENU UTAMA</div><nav class="sidebar-nav" aria-label="Navigasi utama">
+      <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+      <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+      <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+      <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+      <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+      <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+      <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+      <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+      <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+      <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+  </aside>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <main class="main-area"><header class="topbar">
+    <div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong data-breadcrumb>Modul</strong></div></div>
+    <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Keluar" data-logout>⌄</button></div></div>
+  </header>
+  <div class="page-content medical-record-page">
+    <section class="welcome-row"><div><span class="eyebrow">INFORMASI KLINIS PASIEN</span><h1 data-page-title>Rekam Medis</h1><p>Riwayat pasien terintegrasi dari pendaftaran, Rawat Jalan, dan pemeriksaan dokter.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+    <div class="demo-notice"><span>i</span><p>Mode simulasi: data rekam medis berasal dari penyimpanan browser SIMRS SASA. Kode ICD hanya ditampilkan jika tersedia pada catatan, tidak dibuat otomatis.</p></div>
+    <div class="medical-record-alert" id="medicalRecordAlert" role="alert" aria-live="polite" hidden></div>
+    <section class="record-summary-grid" aria-label="Ringkasan rekam medis">
+      <article class="record-summary-card"><span class="summary-icon summary-examining">♙</span><div><small>Pasien dengan No. RM</small><strong id="recordPatientCount">0</strong><span>pasien</span></div></article>
+      <article class="record-summary-card"><span class="summary-icon summary-waiting">⌂</span><div><small>Total kunjungan</small><strong id="recordVisitCount">0</strong><span>kunjungan</span></div></article>
+      <article class="record-summary-card"><span class="summary-icon summary-completed">▤</span><div><small>Catatan pemeriksaan</small><strong id="recordExamCount">0</strong><span>catatan</span></div></article>
+      <article class="record-summary-card"><span class="summary-icon summary-incomplete">!</span><div><small>Perlu dilengkapi</small><strong id="recordIncompleteCount">0</strong><span>rekam medis</span></div></article>
+    </section>
+    <section class="panel medical-record-list-panel">
+      <div class="panel-heading record-list-heading"><div><h2>Daftar rekam medis pasien</h2><p id="medicalRecordCount">0 pasien</p></div><label class="table-search record-search"><span>⌕</span><input id="medicalRecordSearch" type="search" placeholder="Cari nama, NIK, atau No. RM" aria-label="Cari pasien berdasarkan nama, NIK, atau nomor rekam medis"></label></div>
+      <div class="table-wrap"><table class="data-table record-list-table"><thead><tr><th>NO. REKAM MEDIS</th><th>PASIEN / NIK</th><th>KUNJUNGAN</th><th>PEMERIKSAAN</th><th>KUNJUNGAN TERAKHIR</th><th>KELENGKAPAN</th><th>AKSI</th></tr></thead><tbody id="medicalRecordsTable"></tbody></table>
+        <div class="empty-state" id="medicalRecordsEmpty"><span>▤</span><strong>Belum ada rekam medis pasien</strong><p>Rekam medis akan tersedia setelah pasien terdaftar melalui modul Pendaftaran.</p><a class="button button-primary" href="pendaftaran.html">Buka pendaftaran</a></div>
+      </div>
+    </section>
+    <section class="panel medical-record-detail" id="medicalRecordDetail" hidden>
+      <div class="panel-heading record-detail-heading"><div><span class="eyebrow">REKAM MEDIS TERINTEGRASI</span><h2 id="recordDetailTitle">Detail rekam medis</h2><p>Informasi terhubung ke pasien terdaftar dan kunjungan Rawat Jalan.</p></div><div class="record-detail-actions"><button class="button button-primary" id="printResumeButton" type="button">Cetak resume <span>▣</span></button><button class="icon-close-button" id="closeMedicalRecord" type="button" aria-label="Tutup detail rekam medis">×</button></div></div>
+      <div class="record-patient-banner" id="recordPatientBanner"></div>
+      <section class="record-detail-section">
+        <div class="record-section-heading"><span class="record-section-icon">♙</span><div><h3>Identitas pasien</h3><p>Data identitas dari Data Pasien</p></div></div>
+        <dl class="record-identity-grid" id="recordPatientIdentity"></dl>
+      </section>
+      <section class="record-detail-section">
+        <div class="record-section-heading"><span class="record-section-icon">⌂</span><div><h3>Riwayat kunjungan</h3><p>Daftar kunjungan pasien tersusun dari tanggal terbaru</p></div><span class="record-section-count" id="recordVisitHistoryCount">0 kunjungan</span></div>
+        <div class="table-wrap"><table class="data-table record-visit-table"><thead><tr><th>TANGGAL</th><th>NO. REGISTRASI</th><th>POLI / DOKTER</th><th>PEMBAYARAN</th><th>KELUHAN</th><th>STATUS</th></tr></thead><tbody id="recordVisitHistory"></tbody></table><div class="record-inline-empty" id="recordVisitEmpty" hidden>Belum ada kunjungan pasien.</div></div>
+      </section>
+      <section class="record-detail-section">
+        <div class="record-section-heading"><span class="record-section-icon">♡</span><div><h3>Riwayat pemeriksaan dokter</h3><p>Anamnesis, tanda vital, temuan, dan rencana pelayanan</p></div><span class="record-section-count" id="recordExamHistoryCount">0 pemeriksaan</span></div>
+        <div class="record-exam-list" id="recordExamHistory"></div><div class="record-inline-empty" id="recordExamEmpty" hidden>Belum ada catatan pemeriksaan dokter tersimpan.</div>
+      </section>
+      <section class="record-detail-section">
+        <div class="record-section-heading"><span class="record-section-icon">⌕</span><div><h3>Riwayat diagnosis dan tindakan</h3><p>Kode ICD-10 dan ICD-9-CM ditampilkan sesuai catatan yang tersedia</p></div></div>
+        <div class="table-wrap"><table class="data-table record-coding-table"><thead><tr><th>TANGGAL</th><th>DIAGNOSIS</th><th>KODE ICD-10</th><th>TINDAKAN MEDIS</th><th>KODE ICD-9-CM</th></tr></thead><tbody id="recordDiagnosisHistory"></tbody></table><div class="record-inline-empty" id="recordDiagnosisEmpty" hidden>Belum ada diagnosis atau tindakan dari pemeriksaan dokter.</div></div>
+      </section>
+      <section class="record-detail-section">
+        <div class="record-section-heading"><span class="record-section-icon">▤</span><div><h3>Riwayat resep dan obat</h3><p>Obat, dosis, jumlah, dan aturan pakai dari catatan pemeriksaan</p></div></div>
+        <div class="table-wrap"><table class="data-table record-prescription-table"><thead><tr><th>TANGGAL</th><th>NAMA OBAT</th><th>DOSIS</th><th>JUMLAH</th><th>ATURAN PAKAI</th><th>KETERANGAN</th></tr></thead><tbody id="recordPrescriptionHistory"></tbody></table><div class="record-inline-empty" id="recordPrescriptionEmpty" hidden>Belum ada resep obat tersimpan.</div></div>
+      </section>
+      <section class="record-detail-section">
+        <div class="record-section-heading"><span class="record-section-icon">✓</span><div><h3>Kelengkapan dokumen rekam medis</h3><p>Status dihitung dari identitas, kunjungan, pemeriksaan, dan pengodean yang tersimpan</p></div><span id="recordOverallStatus" class="record-completeness-badge">Belum dinilai</span></div>
+        <div class="record-completeness-grid" id="recordCompleteness"></div>
+      </section>
+      <section class="medical-record-resume" id="medicalResume">
+        <div class="resume-heading"><div><span class="eyebrow">RINGKASAN PELAYANAN</span><h3>Resume medis pasien</h3></div><span class="resume-brand">SIMRS SASA</span></div>
+        <div id="recordResumeContent"></div>
+        <p class="resume-disclaimer">Resume ini disusun dari data simulasi yang tersimpan pada browser. Pastikan validasi tenaga medis sebelum digunakan sebagai dokumen pelayanan.</p>
+      </section>
+    </section>
+    <div class="toast-message record-toast" id="medicalRecordToast" role="status" aria-live="polite"></div>
+    <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+  </div></main></div><script src="script.js"></script></body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#102a43">
+  <title>Pendaftaran Pasien | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page"><div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+    <div class="sidebar-label">MENU UTAMA</div><nav class="sidebar-nav" aria-label="Navigasi utama">
+      <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+      <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+      <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+      <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+      <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+      <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+      <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+      <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+      <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+      <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+  </aside>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <main class="main-area"><header class="topbar">
+    <div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong data-breadcrumb>Modul</strong></div></div>
+    <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Keluar" data-logout>⌄</button></div></div>
+  </header>  <div class="page-content registration-page">
+    <section class="welcome-row"><div><span class="eyebrow">PELAYANAN PASIEN</span><h1 data-page-title>Pendaftaran Pasien</h1><p>Daftarkan pasien baru atau lanjutkan kunjungan pasien terdaftar.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+    <div class="demo-notice"><span>i</span><p>Mode demo: data tersimpan di browser ini. Jangan masukkan data pasien sebenarnya sebelum sistem terhubung ke server yang aman.</p></div>
+    <form class="registration-form" id="registrationForm" novalidate>
+      <section class="panel registration-panel">
+        <div class="registration-panel-heading"><div><span class="eyebrow">LANGKAH 1</span><h2>Identitas pasien</h2><p>Pilih jenis pasien untuk melanjutkan pendaftaran.</p></div><span class="step-badge">01</span></div>
+        <div class="patient-tabs" role="tablist" aria-label="Jenis pasien">
+          <button class="patient-tab active" type="button" role="tab" aria-selected="true" data-patient-mode="new"><span class="tab-icon">＋</span><span><strong>Pasien baru</strong><small>Belum memiliki nomor rekam medis</small></span></button>
+          <button class="patient-tab" type="button" role="tab" aria-selected="false" data-patient-mode="existing"><span class="tab-icon">⌕</span><span><strong>Pasien lama</strong><small>Sudah memiliki data pasien</small></span></button>
+        </div>
+        <div class="registration-alert" id="registrationMessage" role="alert" aria-live="polite" hidden></div>
+        <fieldset class="patient-fields" id="newPatientFields">
+          <legend class="sr-only">Identitas pasien baru</legend>
+          <div class="form-grid">
+            <label class="form-field"><span>NIK <i>*</i></span><input name="nik" type="text" inputmode="numeric" autocomplete="off" maxlength="16" minlength="16" pattern="[0-9]{16}" placeholder="16 digit NIK" required><small>Masukkan 16 digit nomor induk kependudukan.</small></label>
+            <label class="form-field"><span>Nomor KK <i>*</i></span><input name="familyCard" type="text" inputmode="numeric" autocomplete="off" maxlength="16" minlength="16" pattern="[0-9]{16}" placeholder="16 digit nomor KK" required></label>
+            <label class="form-field form-field-wide"><span>Nama lengkap <i>*</i></span><input name="fullName" type="text" autocomplete="name" maxlength="100" placeholder="Sesuai kartu identitas" required></label>
+            <label class="form-field"><span>Tempat lahir <i>*</i></span><input name="birthPlace" type="text" maxlength="80" placeholder="Kota tempat lahir" required></label>
+            <label class="form-field"><span>Tanggal lahir <i>*</i></span><input name="birthDate" type="date" required></label>
+            <label class="form-field"><span>Jenis kelamin <i>*</i></span><select name="gender" required><option value="">Pilih jenis kelamin</option><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select></label>
+            <label class="form-field"><span>Nomor HP <i>*</i></span><input name="phone" type="tel" inputmode="tel" autocomplete="tel" minlength="8" maxlength="16" pattern="[0-9]{8,16}" placeholder="Contoh: 081234567890" required></label>
+            <label class="form-field form-field-wide"><span>Alamat lengkap <i>*</i></span><textarea name="address" rows="2" maxlength="250" placeholder="Alamat domisili pasien" required></textarea></label>
+          </div>
+        </fieldset>
+        <div class="existing-patient-fields" id="existingPatientFields" hidden>
+          <label class="form-field search-field"><span>Cari pasien dengan NIK atau nomor rekam medis</span><div class="patient-search-row"><input id="patientSearchInput" type="search" autocomplete="off" placeholder="Contoh: 3201... atau RM-202606-00001"><button class="button button-primary" id="patientSearchButton" type="button"><span>⌕</span> Cari pasien</button></div><small>Gunakan NIK atau nomor rekam medis yang tersimpan di browser ini.</small></label>
+          <div id="patientSearchResult" class="patient-search-result" aria-live="polite"></div>
+        </div>
+      </section>
+      <section class="panel registration-panel visit-panel" id="visitSection">
+        <div class="registration-panel-heading"><div><span class="eyebrow">LANGKAH 2</span><h2>Informasi kunjungan</h2><p>Lengkapi tujuan dan informasi pelayanan pasien.</p></div><span class="step-badge">02</span></div>
+        <div class="selected-patient" id="selectedPatientSummary" hidden></div>
+        <div class="form-grid">
+          <label class="form-field"><span>Tanggal kunjungan <i>*</i></span><input name="visitDate" id="visitDate" type="date" required></label>
+          <label class="form-field"><span>Poli tujuan <i>*</i></span><select name="poli" id="poliSelect" required><option value="">Pilih poliklinik</option><option value="umum">Poli Umum</option><option value="anak">Poli Anak</option><option value="gigi">Poli Gigi</option><option value="penyakit-dalam">Poli Penyakit Dalam</option><option value="kandungan">Poli Kandungan</option><option value="mata">Poli Mata</option></select></label>
+          <label class="form-field"><span>Dokter <i>*</i></span><select name="doctor" id="doctorSelect" required disabled><option value="">Pilih poli terlebih dahulu</option></select></label>
+          <label class="form-field"><span>Jenis pembayaran <i>*</i></span><select name="paymentType" id="paymentType" required><option value="">Pilih jenis pembayaran</option><option value="BPJS">BPJS</option><option value="Umum">Umum</option></select></label>
+          <label class="form-field form-field-wide" id="bpjsField" hidden><span>Nomor kartu BPJS <i>*</i></span><input name="bpjsNumber" id="bpjsNumber" type="text" inputmode="numeric" maxlength="20" placeholder="Masukkan nomor kartu BPJS" disabled></label>
+          <label class="form-field form-field-wide"><span>Keluhan utama <i>*</i></span><textarea name="complaint" rows="3" maxlength="500" placeholder="Tuliskan keluhan utama pasien" required></textarea></label>
+        </div>
+        <div class="registration-actions"><p><i>*</i> Wajib diisi</p><button class="button button-primary registration-submit" type="submit"><span>Simpan pendaftaran</span><b>→</b></button></div>
+      </section>
+    </form>
+    <div class="toast-message" id="registrationToast" role="status" aria-live="polite"></div>
+    <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+  </div></main></div><script src="script.js"></script></body></html>

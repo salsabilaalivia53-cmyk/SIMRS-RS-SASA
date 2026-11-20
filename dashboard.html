@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <title>Dashboard | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand brand-light sidebar-brand" href="dashboard.html">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span>
+      </a>
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+        <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+        <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+        <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+        <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+        <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+        <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+        <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+        <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+        <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+        <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div>
+        <button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" data-sidebar-close></div>
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong>Dashboard</strong></div></div>
+        <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Menu pengguna" data-logout>⌄</button></div></div>
+      </header>
+      <div class="page-content">
+        <section class="welcome-row">
+          <div><span class="eyebrow">RINGKASAN RUMAH SAKIT</span><h1>Selamat datang, <span data-welcome-name>Pengguna</span> <span class="wave">✦</span></h1><p>Pantau aktivitas dan informasi pelayanan rumah sakit hari ini.</p></div>
+          <div class="date-chip"><span>▦</span><span data-long-date></span></div>
+        </section>
+        <section class="stats-grid" aria-label="Ringkasan">
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Total Pasien</span><span class="stat-icon stat-icon-blue">♙</span></div><div class="stat-value">1.284</div><div class="stat-foot"><span class="stat-neutral">Data terdaftar</span><span class="stat-period">Keseluruhan</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Kunjungan Hari Ini</span><span class="stat-icon stat-icon-teal">⌂</span></div><div class="stat-value">48</div><div class="stat-foot"><span class="stat-positive">● Operasional</span><span class="stat-period">Hari ini</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Dokter Bertugas</span><span class="stat-icon stat-icon-violet">♧</span></div><div class="stat-value">12</div><div class="stat-foot"><span class="stat-neutral">Di 6 poliklinik</span><span class="stat-period">Hari ini</span></div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Menunggu Pelayanan</span><span class="stat-icon stat-icon-amber">◷</span></div><div class="stat-value">07</div><div class="stat-foot"><span class="stat-waiting">Perlu ditangani</span><span class="stat-period">Saat ini</span></div></article>
+        </section>
+        <section class="dashboard-grid">
+          <article class="panel activity-panel">
+            <div class="panel-heading"><div><h2>Aktivitas pelayanan</h2><p>Ringkasan kunjungan pasien hari ini</p></div><span class="live-pill"><i></i> Hari ini</span></div>
+            <div class="activity-summary"><div class="activity-total"><strong>48</strong><span>Total kunjungan</span></div><div class="activity-legend"><span><i class="legend-dot legend-blue"></i>Sudah dilayani <strong>41</strong></span><span><i class="legend-dot legend-teal"></i>Dalam antrean <strong>07</strong></span></div></div>
+            <div class="chart-area" aria-label="Grafik kunjungan hari ini"><div class="chart-y-labels"><span>20</span><span>15</span><span>10</span><span>5</span><span>0</span></div><div class="chart-plot"><div class="chart-gridlines"><i></i><i></i><i></i><i></i><i></i></div><div class="chart-bars"><div class="chart-group"><span class="bar bar-blue" style="height:34%"></span><span class="bar bar-teal" style="height:18%"></span><small>08.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:53%"></span><span class="bar bar-teal" style="height:24%"></span><small>09.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:73%"></span><span class="bar bar-teal" style="height:30%"></span><small>10.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:45%"></span><span class="bar bar-teal" style="height:22%"></span><small>11.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:88%"></span><span class="bar bar-teal" style="height:35%"></span><small>12.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:63%"></span><span class="bar bar-teal" style="height:27%"></span><small>13.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:49%"></span><span class="bar bar-teal" style="height:20%"></span><small>14.00</small></div><div class="chart-group"><span class="bar bar-blue" style="height:31%"></span><span class="bar bar-teal" style="height:14%"></span><small>15.00</small></div></div></div></div>
+          </article>
+          <article class="panel quick-panel">
+            <div class="panel-heading"><div><h2>Akses cepat</h2><p>Pilih menu untuk memulai</p></div></div>
+            <div class="quick-links">
+              <a class="quick-link" href="pendaftaran.html"><span class="quick-icon quick-blue">＋</span><span><strong>Pendaftaran pasien</strong><small>Daftarkan kunjungan baru</small></span><b>→</b></a>
+              <a class="quick-link" href="pasien.html"><span class="quick-icon quick-teal">♙</span><span><strong>Data pasien</strong><small>Lihat daftar pasien</small></span><b>→</b></a>
+              <a class="quick-link" href="rawat-jalan.html"><span class="quick-icon quick-violet">⌂</span><span><strong>Rawat jalan</strong><small>Pantau pelayanan poli</small></span><b>→</b></a>
+              <a class="quick-link" href="laporan.html"><span class="quick-icon quick-amber">▥</span><span><strong>Laporan</strong><small>Ringkasan operasional</small></span><b>→</b></a>
+            </div>
+          </article>
+        </section>
+        <section class="panel schedule-panel">
+          <div class="panel-heading"><div><h2>Poliklinik hari ini</h2><p>Informasi jadwal pelayanan</p></div><a class="text-link" href="poli.html">Lihat semua <span>→</span></a></div>
+          <div class="table-wrap"><table><thead><tr><th>POLIKLINIK</th><th>DOKTER</th><th>JADWAL</th><th>STATUS</th></tr></thead><tbody><tr><td><span class="table-avatar table-avatar-blue">U</span><strong>Poli Umum</strong></td><td>dr. Andi Pratama</td><td>08.00 – 14.00</td><td><span class="table-status status-open"><i></i>Berlangsung</span></td></tr><tr><td><span class="table-avatar table-avatar-teal">A</span><strong>Poli Anak</strong></td><td>dr. Siti Rahma, Sp.A</td><td>09.00 – 15.00</td><td><span class="table-status status-open"><i></i>Berlangsung</span></td></tr><tr><td><span class="table-avatar table-avatar-violet">G</span><strong>Poli Gigi</strong></td><td>drg. Budi Santoso</td><td>10.00 – 16.00</td><td><span class="table-status status-upcoming"><i></i>Akan dimulai</span></td></tr></tbody></table></div>
+        </section>
+        <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+      </div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

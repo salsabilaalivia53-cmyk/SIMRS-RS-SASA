@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <title>Rawat Inap | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="prototype-operations.js" defer></script>
+</head>
+<body class="app-page" data-prototype-module="rawat-inap">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+        <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+        <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+        <a class="nav-link active" href="rawat-inap.html" data-nav="rawat-inap.html"><span class="nav-icon">▦</span><span>Rawat Inap</span></a>
+      </nav>
+      <div class="sidebar-bottom"><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+    </aside>
+    <div class="sidebar-backdrop" data-sidebar-close></div>
+    <main class="main-area" data-prototype-root="rawat-inap">
+      <header class="topbar">
+        <div class="topbar-left"><button class="menu-toggle" type="button" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong>Rawat Inap</strong></div></div>
+        <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small data-user-role>Staf</small></span><button class="user-chevron" type="button" data-logout>⌄</button></div></div>
+      </header>
+      <div class="page-content">
+        <section class="welcome-row"><div><span class="eyebrow">LAYANAN PERAWATAN</span><h1>Rawat Inap</h1><p>Kelola admisi, tempat tidur, perkembangan, dan pasien pulang.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+        <div id="prototypeAlert" class="exam-form-message" role="alert" aria-live="polite" hidden></div>
+        <section class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Sedang dirawat</span><span class="stat-icon stat-icon-blue">♙</span></div><div class="stat-value" id="activeAdmissionCount">0</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Tempat tidur tersedia</span><span class="stat-icon stat-icon-teal">▦</span></div><div class="stat-value" id="availableBedCount">0</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Dipakai</span><span class="stat-icon stat-icon-violet">▦</span></div><div class="stat-value" id="occupiedBedCount">0</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Perlu dibersihkan</span><span class="stat-icon stat-icon-amber">◷</span></div><div class="stat-value" id="cleaningBedCount">0</div></article>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><div><h2>Buat admisi baru</h2><p>Identitas pasien selalu terhubung melalui No. RM</p></div><button class="button button-primary" type="button" id="toggleAdmissionForm">＋ Admisi pasien</button></div>
+          <form id="admissionForm" class="form-grid" hidden>
+            <label class="form-field"><span>Pasien <i>*</i></span><select name="medicalRecordNumber" id="admissionPatient" required></select></label>
+            <label class="form-field"><span>Kunjungan (opsional)</span><select name="registrationNumber" id="admissionVisit"><option value="">Tidak ditautkan</option></select></label>
+            <label class="form-field"><span>Kelas / ruang <i>*</i></span><select name="roomId" id="admissionRoom" required></select></label>
+            <label class="form-field"><span>Tempat tidur <i>*</i></span><select name="bedId" id="admissionBed" required></select></label>
+            <label class="form-field"><span>Tanggal masuk <i>*</i></span><input name="admissionDate" type="date" required></label>
+            <label class="form-field"><span>Dokter penanggung jawab</span><input name="doctor" maxlength="100" placeholder="Nama dokter"></label>
+            <label class="form-field form-field-wide"><span>Diagnosis / alasan rawat</span><textarea name="diagnosis" maxlength="500" placeholder="Diagnosis awal atau alasan admisi"></textarea></label>
+            <div class="exam-form-actions" style="grid-column:1/-1"><p>Bed yang tersedia akan dialokasikan.</p><div><button class="button button-secondary" type="button" id="cancelAdmission">Batal</button><button class="button button-primary" type="submit">Simpan admisi</button></div></div>
+          </form>
+        </section>
+        <section class="panel" style="margin-top:16px">
+          <div class="panel-heading"><div><h2>Pasien rawat inap</h2><p id="admissionCountLabel">0 data admisi</p></div></div>
+          <div class="visit-filters" style="display:flex;gap:10px;margin:12px 0">
+            <label class="table-search" style="flex:1"><span>⌕</span><input id="admissionSearch" type="search" placeholder="Cari nama atau No. RM"></label>
+            <select id="admissionStatusFilter" aria-label="Filter status"><option value="">Semua status</option><option value="Aktif">Aktif</option><option value="Dipindahkan">Dipindahkan</option><option value="Selesai">Selesai</option></select>
+          </div>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th>NO. ADMISI</th><th>PASIEN / RM</th><th>TEMPAT</th><th>MASUK</th><th>STATUS</th><th>AKSI</th></tr></thead><tbody id="admissionTable"></tbody></table></div>
+        </section>
+        <section class="panel admission-resume-panel" id="admissionResumePanel" hidden>
+          <div class="panel-heading"><div><h2>Resume pasien pulang</h2><p>Ringkasan keluar dari layanan rawat inap</p></div><div><button class="button button-secondary" type="button" id="closeAdmissionResume">Tutup</button> <button class="button button-primary" type="button" id="printAdmissionResume">Cetak resume</button></div></div>
+          <div id="admissionResumeContent" class="admission-resume-content"></div>
+        </section>
+        <section class="panel" style="margin-top:16px">
+          <div class="panel-heading"><div><h2>Daftar tempat tidur</h2><p>Status bed diperbarui otomatis</p></div></div>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th>KODE BED</th><th>RUANG / KELAS</th><th>STATUS</th><th>PASIEN AKTIF</th><th>AKSI</th></tr></thead><tbody id="bedTable"></tbody></table></div>
+        </section>
+        <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

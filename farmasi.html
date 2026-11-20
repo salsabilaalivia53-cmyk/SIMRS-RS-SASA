@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <title>Farmasi | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="prototype-operations.js" defer></script>
+</head>
+<body class="app-page" data-prototype-module="farmasi">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+        <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+        <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+        <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+        <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+        <a class="nav-link active" href="farmasi.html" data-nav="farmasi.html"><span class="nav-icon">✚</span><span>Farmasi</span></a>
+      </nav>
+      <div class="sidebar-bottom"><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+    </aside>
+    <div class="sidebar-backdrop" data-sidebar-close></div>
+    <main class="main-area" data-prototype-root="farmasi">
+      <header class="topbar">
+        <div class="topbar-left"><button class="menu-toggle" type="button" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong>Farmasi</strong></div></div>
+        <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small data-user-role>Staf</small></span><button class="user-chevron" type="button" data-logout>⌄</button></div></div>
+      </header>
+      <div class="page-content">
+        <section class="welcome-row"><div><span class="eyebrow">LAYANAN FARMASI</span><h1>Farmasi</h1><p>Kelola resep, persediaan, dan transaksi obat.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+        <div id="prototypeAlert" class="exam-form-message" role="alert" aria-live="polite" hidden></div>
+        <section class="stats-grid" aria-label="Ringkasan farmasi">
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Obat terdaftar</span><span class="stat-icon stat-icon-blue">✚</span></div><div class="stat-value" id="medicineCount">0</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Resep menunggu</span><span class="stat-icon stat-icon-amber">◷</span></div><div class="stat-value" id="orderCount">0</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Stok rendah</span><span class="stat-icon stat-icon-violet">!</span></div><div class="stat-value" id="lowCount">0</div></article>
+          <article class="stat-card"><div class="stat-top"><span class="stat-label">Transaksi</span><span class="stat-icon stat-icon-teal">▤</span></div><div class="stat-value" id="transactionCount">0</div></article>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><div><h2>Master obat</h2><p>Tambah, ubah, atau hapus data obat</p></div><button class="button button-primary" type="button" id="addMedicineButton">＋ Tambah obat</button></div>
+          <div id="medicineFormWrap" hidden>
+            <form id="medicineForm" class="form-grid">
+              <input type="hidden" name="id">
+              <label class="form-field"><span>Kode <i>*</i></span><input name="code" required maxlength="30"></label>
+              <label class="form-field"><span>Nama obat <i>*</i></span><input name="name" required maxlength="120"></label>
+              <label class="form-field"><span>Kategori <i>*</i></span><input name="category" required maxlength="60"></label>
+              <label class="form-field"><span>Satuan <i>*</i></span><input name="unit" required maxlength="30"></label>
+              <label class="form-field"><span>Harga <i>*</i></span><input name="price" type="number" min="0" step="1" required></label>
+              <label class="form-field"><span>Stok awal <i>*</i></span><input name="stock" type="number" min="0" step="1" required></label>
+              <label class="form-field"><span>Stok minimum <i>*</i></span><input name="minStock" type="number" min="0" step="1" required></label>
+              <label class="form-field"><span>Keterangan</span><input name="description" maxlength="300"></label>
+              <div class="exam-form-actions" style="grid-column:1/-1"><p>Field bertanda <i>*</i> wajib diisi.</p><div><button class="button button-secondary" type="button" id="cancelMedicine">Batal</button><button class="button button-primary" type="submit">Simpan obat</button></div></div>
+            </form>
+          </div>
+          <div class="panel-heading" style="margin-top:14px"><label class="table-search"><span>⌕</span><input id="medicineSearch" type="search" placeholder="Cari obat atau kode"></label></div>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th>KODE</th><th>NAMA / KATEGORI</th><th>SATUAN</th><th>HARGA</th><th>STOK</th><th>STATUS</th><th>AKSI</th></tr></thead><tbody id="medicineTable"></tbody></table></div>
+        </section>
+        <section class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-heading"><div><h2>Verifikasi resep</h2><p>Periksa dan serahkan resep pemeriksaan dokter</p></div></div>
+            <label class="table-search" style="margin-top:12px"><span>⌕</span><input id="orderSearch" type="search" placeholder="Cari pasien, RM, atau No. resep"></label>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>RESEP</th><th>PASIEN</th><th>OBAT</th><th>STATUS</th><th>AKSI</th></tr></thead><tbody id="orderTable"></tbody></table></div>
+          </article>
+          <article class="panel">
+            <div class="panel-heading"><div><h2>Mutasi stok</h2><p>Stok masuk dan stok keluar manual</p></div></div>
+            <form id="stockForm" class="form-grid" style="margin-top:14px">
+              <label class="form-field"><span>Obat <i>*</i></span><select name="medicationId" id="stockMedication" required></select></label>
+              <label class="form-field"><span>Jenis <i>*</i></span><select name="type" required><option value="Masuk">Stok masuk</option><option value="Keluar">Stok keluar</option></select></label>
+              <label class="form-field"><span>Jumlah <i>*</i></span><input name="quantity" type="number" min="1" step="1" required></label>
+              <label class="form-field"><span>Keterangan</span><input name="notes" maxlength="200" placeholder="Alasan atau referensi"></label>
+              <div style="grid-column:1/-1"><button class="button button-primary" type="submit">Catat mutasi</button></div>
+            </form>
+          </article>
+        </section>
+        <section class="panel">
+          <div class="panel-heading"><div><h2>Riwayat transaksi</h2><p>Mutasi masuk dan keluar persediaan</p></div></div>
+          <div class="table-wrap"><table class="data-table"><thead><tr><th>TANGGAL</th><th>OBAT</th><th>JENIS</th><th>JUMLAH</th><th>KETERANGAN</th></tr></thead><tbody id="transactionTable"></tbody></table></div>
+        </section>
+        <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

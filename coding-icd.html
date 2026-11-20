@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#102a43">
+  <title>Coding ICD | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page"><div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+    <div class="sidebar-label">MENU UTAMA</div><nav class="sidebar-nav" aria-label="Navigasi utama">
+      <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+      <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+      <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+      <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+      <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+      <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+      <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+      <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+      <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+      <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+  </aside>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <main class="main-area"><header class="topbar">
+    <div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong data-breadcrumb>Modul</strong></div></div>
+    <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Keluar" data-logout>⌄</button></div></div>
+  </header>
+  <div class="page-content icd-coding-page">
+    <section class="welcome-row"><div><span class="eyebrow">PENGELOLAAN KODE KLINIS</span><h1 data-page-title>Coding ICD</h1><p>Lengkapi kode diagnosis dan tindakan dari catatan pemeriksaan pasien.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+    <div class="demo-notice"><span>i</span><p>Gunakan kode berdasarkan referensi ICD resmi yang tersedia di aplikasi. Kode yang diketik manual ditandai belum terverifikasi dan tidak dapat berstatus Selesai.</p></div>
+    <div class="icd-coding-alert" id="codingAlert" role="alert" aria-live="polite" hidden></div>
+    <div class="icd-reference-notice" id="icdReferenceNotice" role="status" aria-live="polite" hidden></div>
+    <section class="coding-summary-grid" aria-label="Ringkasan status coding">
+      <article class="coding-summary-card"><span class="summary-icon summary-waiting">⌕</span><div><small>Belum Dikode</small><strong id="codingNotStartedCount">0</strong><span>pemeriksaan</span></div></article>
+      <article class="coding-summary-card"><span class="summary-icon summary-examining">◷</span><div><small>Proses</small><strong id="codingInProgressCount">0</strong><span>pemeriksaan</span></div></article>
+      <article class="coding-summary-card"><span class="summary-icon summary-completed">✓</span><div><small>Selesai</small><strong id="codingCompletedCount">0</strong><span>pemeriksaan</span></div></article>
+      <article class="coding-summary-card coding-reference-card"><span class="summary-icon summary-reference">▤</span><div><small>Referensi ICD</small><strong id="icdReferenceCount">0</strong><span id="icdReferenceLabel">belum tersedia</span></div></article>
+    </section>
+    <section class="panel coding-worklist-panel">
+      <div class="panel-heading coding-worklist-heading"><div><h2>Daftar pemeriksaan untuk coding</h2><p id="codingWorklistCount">0 pemeriksaan</p></div><label class="table-search coding-search"><span>⌕</span><input id="codingPatientSearch" type="search" placeholder="Cari nama pasien atau nomor rekam medis" aria-label="Cari pasien berdasarkan nama atau nomor rekam medis"></label></div>
+      <div class="table-wrap"><table class="data-table coding-worklist-table"><thead><tr><th>TANGGAL KUNJUNGAN</th><th>PASIEN / NO. RM</th><th>POLI / DOKTER</th><th>DIAGNOSIS UTAMA</th><th>KODE ICD-10</th><th>STATUS CODING</th><th>AKSI</th></tr></thead><tbody id="codingWorklist"></tbody></table>
+        <div class="empty-state" id="codingWorklistEmpty"><span>⌕</span><strong>Belum ada pemeriksaan untuk coding</strong><p>Pasien muncul setelah dokter menyimpan catatan pemeriksaan.</p><a class="button button-secondary" href="pemeriksaan.html">Buka pemeriksaan</a></div>
+      </div>
+    </section>
+    <section class="panel coding-editor-panel" id="codingEditor" hidden>
+      <div class="panel-heading coding-editor-heading"><div><span class="eyebrow">PENGODEAN KUNJUNGAN</span><h2 id="codingEditorTitle">Hasil coding</h2><p>Diagnosis dan tindakan diambil dari pemeriksaan dokter.</p></div><button class="icon-close-button" id="closeCodingEditor" type="button" aria-label="Tutup form coding">×</button></div>
+      <div class="coding-patient-banner" id="codingPatientBanner"></div>
+      <form id="codingForm" novalidate>
+        <section class="coding-form-section">
+          <div class="coding-section-heading"><span class="coding-section-number">01</span><div><h3>Diagnosis utama</h3><p>Diagnosis klinis utama dari pemeriksaan dokter</p></div></div>
+          <label class="coding-field"><span>Diagnosis utama</span><textarea id="primaryDiagnosisText" rows="2" maxlength="500" required></textarea></label>
+          <div class="icd-code-editor" id="primaryIcd10Editor" data-code-editor data-type="icd10">
+            <label class="coding-field"><span>Cari kode / nama diagnosis pada referensi ICD-10</span><input type="search" data-lookup-search placeholder="Pencarian hanya mencakup katalog ICD resmi yang tersedia di aplikasi" autocomplete="off"></label>
+            <div class="icd-lookup-results" data-lookup-results hidden></div>
+            <div class="coding-code-inputs"><label class="coding-field"><span>Kode ICD-10</span><input type="text" data-code-value maxlength="30" placeholder="Kode manual akan berstatus belum terverifikasi"></label><label class="coding-field"><span>Deskripsi kode</span><input type="text" data-code-description readonly placeholder="Pilih kode dari referensi resmi"></label></div>
+            <small class="code-verification-note" data-code-note>Kode belum dipilih dari referensi aplikasi.</small>
+          </div>
+        </section>
+        <section class="coding-form-section">
+          <div class="coding-section-heading"><span class="coding-section-number">02</span><div><h3>Diagnosis sekunder / tambahan</h3><p>Tambahkan diagnosis penyerta dan kode ICD-10 bila ada</p></div><button class="button button-secondary coding-add-button" id="addSecondaryDiagnosis" type="button">＋ Tambah diagnosis</button></div>
+          <div class="coding-dynamic-list" id="secondaryDiagnosisRows"></div>
+          <div class="coding-list-empty" id="secondaryDiagnosisEmpty">Tidak ada diagnosis sekunder yang dicatat.</div>
+        </section>
+        <section class="coding-form-section">
+          <div class="coding-section-heading"><span class="coding-section-number">03</span><div><h3>Tindakan medis</h3><p>Input kode tindakan ICD-9-CM sesuai referensi</p></div><button class="button button-secondary coding-add-button" id="addProcedure" type="button">＋ Tambah tindakan</button></div>
+          <div class="coding-dynamic-list" id="procedureCodingRows"></div>
+          <div class="coding-list-empty" id="procedureCodingEmpty">Tidak ada tindakan medis yang dicatat.</div>
+        </section>
+        <section class="coding-form-section coding-status-section">
+          <div class="coding-section-heading"><span class="coding-section-number">04</span><div><h3>Status coding</h3><p>Status Selesai memerlukan kode yang dipilih dari referensi ICD resmi</p></div></div>
+          <div class="coding-status-controls"><label class="coding-field"><span>Status</span><select id="codingStatus" required><option value="Belum Dikode">Belum Dikode</option><option value="Proses">Proses</option><option value="Selesai">Selesai</option></select></label><p id="codingStatusHint">Simpan hasil pengodean untuk memperbarui Rekam Medis dan ringkasan Laporan.</p></div>
+        </section>
+        <div class="coding-form-actions"><p>Data akan tersimpan bersama catatan pemeriksaan pasien.</p><button class="button button-primary" type="submit">Simpan hasil coding <span>→</span></button></div>
+      </form>
+      <div class="coding-history-section">
+        <div class="coding-section-heading"><span class="coding-section-number">↺</span><div><h3>Riwayat coding pasien</h3><p>Riwayat hasil coding berdasarkan kunjungan pasien</p></div><span class="record-section-count" id="codingHistoryCount">0 riwayat</span></div>
+        <div class="table-wrap"><table class="data-table coding-history-table"><thead><tr><th>TANGGAL</th><th>DIAGNOSIS UTAMA</th><th>KODE ICD-10</th><th>TINDAKAN / KODE ICD-9-CM</th><th>STATUS</th><th>DIUBAH</th></tr></thead><tbody id="codingHistory"></tbody></table><div class="coding-list-empty" id="codingHistoryEmpty">Belum ada hasil coding untuk pasien ini.</div></div>
+      </div>
+    </section>
+    <div class="toast-message coding-toast" id="codingToast" role="status" aria-live="polite"></div>
+    <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+  </div></main></div><script src="script.js"></script></body></html>

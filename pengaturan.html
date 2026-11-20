@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102a43">
+  <title>Pengaturan Sistem | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .admin-root { --admin-line:#e8edf2; }
+    .admin-root .admin-intro { margin-bottom:18px; padding:15px 18px; border:1px solid #dcefeb; border-radius:8px; color:#48716b; background:#f0faf8; font-size:12px; line-height:1.6; }
+    .admin-root .admin-layout { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; align-items:start; }
+    .admin-root .admin-panel { min-width:0; padding:17px; }
+    .admin-root .admin-panel h2 { margin:0; color:#294057; font:700 14px var(--font-heading); }
+    .admin-root .admin-panel > p { margin:5px 0 14px; color:#8997a5; font-size:10px; line-height:1.6; }
+    .admin-root input,.admin-root select,.admin-root textarea { width:100%; min-height:38px; padding:9px 10px; border:1px solid #dfe6ec; border-radius:6px; outline:0; color:#34495e; background:#fff; font:12px var(--font-body); }
+    .admin-root input:focus,.admin-root select:focus,.admin-root textarea:focus { border-color:#53b8ad; box-shadow:0 0 0 3px rgba(23,168,155,.1); }
+    .admin-root label { display:block; margin-bottom:5px; color:#516579; font-size:10px; font-weight:600; }
+    .admin-root .admin-field { margin-bottom:11px; }
+    .admin-root .admin-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 10px; }
+    .admin-root .admin-field-full { grid-column:1/-1; }
+    .admin-root .button { min-height:38px; padding:0 14px; font-size:11px; }
+    .admin-root .button-secondary { border:1px solid #e1e8ed; color:#52667a; background:#fff; }
+    .admin-root .button-danger { color:#a84141; background:#fff0ef; }
+    .admin-root .admin-message { min-height:16px; margin:8px 0 0; color:#188675; font-size:11px; }
+    .admin-root .admin-message.error { color:#b54747; }
+    .admin-root .admin-table { margin-top:0; }
+    .admin-root .admin-table th { padding:9px 8px; }
+    .admin-root .admin-table td { padding:9px 8px; }
+    .admin-root .admin-empty { padding:20px 10px; color:#94a1ad; text-align:center; font-size:11px; }
+    .admin-root .check-list { display:flex; flex-wrap:wrap; gap:8px 13px; margin:8px 0 13px; }
+    .admin-root .check-list label { display:inline-flex; align-items:center; gap:6px; margin:0; font-weight:500; }
+    .admin-root .check-list input { width:14px; min-height:14px; height:14px; margin:0; accent-color:#11877e; }
+    .admin-root .permission-role { margin:13px 0 7px; color:#42596e; font-size:11px; font-weight:700; }
+    .admin-root .demo-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+    .admin-root .demo-account { padding:9px 10px; border:1px solid #edf0f3; border-radius:6px; color:#54697d; font-size:10px; }
+    .admin-root .demo-account strong { display:block; margin-bottom:3px; color:#334b60; font-size:11px; }
+    .admin-root .demo-account code { color:#128477; font-size:10px; }
+    .admin-root .reset-box { padding:15px; border:1px solid #f1d8d5; border-radius:7px; background:#fff8f7; }
+    .admin-root .reset-box p { margin:6px 0 12px; color:#8d6a67; font-size:10px; line-height:1.6; }
+    @media(max-width:900px) { .admin-root .admin-layout { grid-template-columns:1fr; } }
+    @media(max-width:650px) { .admin-root .admin-form-grid,.admin-root .demo-list { grid-template-columns:1fr; } .admin-root .admin-field-full { grid-column:auto; } .admin-root .admin-panel { padding:14px; } }
+  </style>
+</head>
+<body class="app-page" data-prototype-module="pengaturan">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+        <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+        <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+        <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+        <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+        <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+        <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+        <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+        <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+        <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+        <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+      </nav>
+      <div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+    </aside>
+    <div class="sidebar-backdrop" data-sidebar-close></div>
+    <main class="main-area">
+      <header class="topbar"><div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong data-breadcrumb>Pengaturan Sistem</strong></div></div><div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small data-user-role>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Keluar" data-logout>⌄</button></div></div></header>
+      <div class="page-content">
+        <section class="welcome-row"><div><span class="eyebrow">KONFIGURASI</span><h1 data-page-title>Pengaturan Sistem</h1><p data-page-description>Atur profil rumah sakit, tarif, hak akses, dan data demo.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+        <div class="admin-root" data-prototype-root></div>
+        <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+      </div>
+    </main>
+  </div>
+  <script src="script.js" defer></script>
+  <script src="prototype-admin.js" defer></script>
+</body>
+</html>

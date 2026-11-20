@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#102a43">
+  <title>Pemeriksaan | SIMRS SASA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page"><div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand brand-light sidebar-brand" href="dashboard.html"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-copy"><strong>SIMRS <span>SASA</span></strong><small>Rumah Sakit Sehat Abadi</small></span></a>
+    <div class="sidebar-label">MENU UTAMA</div><nav class="sidebar-nav" aria-label="Navigasi utama">
+      <a class="nav-link" href="dashboard.html" data-nav="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" href="pendaftaran.html" data-nav="pendaftaran.html"><span class="nav-icon">＋</span><span>Pendaftaran</span></a>
+      <a class="nav-link" href="pasien.html" data-nav="pasien.html"><span class="nav-icon">♙</span><span>Data Pasien</span></a>
+      <a class="nav-link" href="rawat-jalan.html" data-nav="rawat-jalan.html"><span class="nav-icon">⌂</span><span>Rawat Jalan</span></a>
+      <a class="nav-link" href="pemeriksaan.html" data-nav="pemeriksaan.html"><span class="nav-icon">♡</span><span>Pemeriksaan</span></a>
+      <a class="nav-link" href="rekam-medis.html" data-nav="rekam-medis.html"><span class="nav-icon">▤</span><span>Rekam Medis</span></a>
+      <a class="nav-link" href="coding-icd.html" data-nav="coding-icd.html"><span class="nav-icon">⌕</span><span>Coding ICD</span></a>
+      <div class="sidebar-label sidebar-label-spaced">MANAJEMEN</div>
+      <a class="nav-link" href="laporan.html" data-nav="laporan.html"><span class="nav-icon">▥</span><span>Laporan</span></a>
+      <a class="nav-link" href="dokter.html" data-nav="dokter.html"><span class="nav-icon">♧</span><span>Data Dokter</span></a>
+      <a class="nav-link" href="poli.html" data-nav="poli.html"><span class="nav-icon">⌖</span><span>Data Poliklinik</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-help"><span class="help-icon">?</span><div><strong>Butuh bantuan?</strong><small>Hubungi administrator</small></div></div><button class="sidebar-logout" type="button" data-logout><span class="nav-icon">↪</span>Keluar dari sistem</button></div>
+  </aside>
+  <div class="sidebar-backdrop" data-sidebar-close></div>
+  <main class="main-area"><header class="topbar">
+    <div class="topbar-left"><button class="menu-toggle" type="button" aria-label="Buka navigasi" data-menu-toggle>☰</button><div class="breadcrumb"><span>SIMRS SASA</span><span class="breadcrumb-separator">/</span><strong data-breadcrumb>Modul</strong></div></div>
+    <div class="topbar-right"><span class="topbar-date" data-current-date></span><span class="topbar-divider"></span><button class="notification-button" type="button" aria-label="Notifikasi">♧<i></i></button><div class="user-menu"><span class="user-avatar" data-user-initial>U</span><span class="user-meta"><strong data-user-name>Pengguna</strong><small>Staf Rumah Sakit</small></span><button class="user-chevron" type="button" aria-label="Keluar" data-logout>⌄</button></div></div>
+  </header>  <div class="page-content examination-page">
+    <section class="welcome-row"><div><span class="eyebrow">PELAYANAN RAWAT JALAN</span><h1 data-page-title>Pemeriksaan Dokter</h1><p>Periksa pasien yang sudah dipanggil dari antrean Rawat Jalan.</p></div><div class="date-chip"><span>▦</span><span data-long-date></span></div></section>
+    <div class="demo-notice"><span>i</span><p>Mode simulasi: catatan disimpan pada browser ini bersama data pendaftaran. Jangan gunakan data pasien sebenarnya.</p></div>
+    <div class="examination-alert" id="examinationAlert" role="alert" aria-live="polite" hidden></div>
+    <section class="exam-summary-grid" aria-label="Ringkasan pemeriksaan">
+      <article class="exam-summary-card"><span class="summary-icon summary-waiting">◷</span><div><small>Dipanggil</small><strong id="examCalledCount">0</strong><span>pasien</span></div></article>
+      <article class="exam-summary-card"><span class="summary-icon summary-examining">♡</span><div><small>Sedang diperiksa</small><strong id="examInProgressCount">0</strong><span>pasien</span></div></article>
+      <article class="exam-summary-card"><span class="summary-icon summary-completed">▤</span><div><small>Pemeriksaan tersimpan</small><strong id="examSavedCount">0</strong><span>catatan</span></div></article>
+    </section>
+    <section class="panel doctor-worklist-panel">
+      <div class="panel-heading doctor-worklist-heading"><div><h2>Antrean pemeriksaan</h2><p id="doctorWorklistCount">0 pasien menunggu dokter</p></div><label class="table-search doctor-search"><span>⌕</span><input id="examinationSearch" type="search" placeholder="Cari nama pasien atau nomor rekam medis" aria-label="Cari pasien berdasarkan nama atau nomor rekam medis"></label></div>
+      <div class="table-wrap"><table class="data-table doctor-worklist-table"><thead><tr><th>ANTREAN</th><th>PASIEN / NO. RM</th><th>TANGGAL LAHIR</th><th>JENIS KELAMIN</th><th>POLIKLINIK / DOKTER</th><th>STATUS</th><th>AKSI</th></tr></thead><tbody id="doctorWorklist"></tbody></table><div class="empty-state" id="worklistEmpty"><span>♡</span><strong>Tidak ada pasien dalam antrean pemeriksaan</strong><p>Pasien akan muncul setelah status antrean menjadi Dipanggil atau Sedang Diperiksa di modul Rawat Jalan.</p><a class="button button-secondary" href="rawat-jalan.html">Buka Rawat Jalan</a></div></div>
+    </section>
+    <section class="panel examination-workspace" id="examWorkspace" hidden>
+      <div class="panel-heading exam-workspace-heading"><div><span class="eyebrow">CATATAN MEDIS RAWAT JALAN</span><h2>Form pemeriksaan dokter</h2><p>Data identitas diambil dari pasien terdaftar.</p></div><button class="icon-close-button" id="closeExamWorkspace" type="button" aria-label="Tutup form pemeriksaan">×</button></div>
+      <div class="exam-patient-banner" id="examPatientBanner"></div>
+      <div class="exam-readonly-notice" id="examReadOnlyNotice" hidden>Riwayat ini hanya dapat dilihat. Catatan pemeriksaan yang sudah selesai tidak dapat diubah dari halaman ini.</div>
+      <form id="examinationForm" novalidate>
+        <fieldset class="exam-fields" id="examFields">
+          <section class="exam-form-section">
+            <div class="exam-section-heading"><span class="exam-section-number">01</span><div><h3>Anamnesis</h3><p>Keluhan dan riwayat kesehatan pasien</p></div></div>
+            <div class="exam-form-grid">
+              <label class="form-field"><span>Keluhan utama <i>*</i></span><textarea name="mainComplaint" rows="2" maxlength="500" required placeholder="Keluhan utama pasien"></textarea></label>
+              <label class="form-field"><span>Riwayat penyakit sekarang</span><textarea name="currentHistory" rows="2" maxlength="1200" placeholder="Uraikan perjalanan keluhan saat ini"></textarea></label>
+              <label class="form-field form-field-wide"><span>Riwayat penyakit dahulu</span><textarea name="pastHistory" rows="2" maxlength="1200" placeholder="Riwayat penyakit, alergi, atau pengobatan sebelumnya"></textarea></label>
+            </div>
+          </section>
+          <section class="exam-form-section">
+            <div class="exam-section-heading"><span class="exam-section-number">02</span><div><h3>Tanda-tanda vital</h3><p>Catat hasil pengukuran klinis pasien</p></div></div>
+            <div class="exam-form-grid exam-vitals-grid">
+              <label class="form-field"><span>Tekanan darah</span><div class="unit-input"><input name="bloodPressure" maxlength="20" placeholder="120/80"><span>mmHg</span></div></label>
+              <label class="form-field"><span>Suhu tubuh</span><div class="unit-input"><input name="temperature" type="number" min="25" max="45" step="0.1" placeholder="36.5"><span>°C</span></div></label>
+              <label class="form-field"><span>Nadi</span><div class="unit-input"><input name="pulse" type="number" min="1" max="250" step="1" placeholder="80"><span>x/menit</span></div></label>
+              <label class="form-field"><span>Respirasi</span><div class="unit-input"><input name="respiratory" type="number" min="1" max="100" step="1" placeholder="20"><span>x/menit</span></div></label>
+              <label class="form-field"><span>Berat badan</span><div class="unit-input"><input name="weight" type="number" min="0.1" max="500" step="0.1" placeholder="60"><span>kg</span></div></label>
+            </div>
+          </section>
+          <section class="exam-form-section">
+            <div class="exam-section-heading"><span class="exam-section-number">03</span><div><h3>Pemeriksaan dan diagnosis</h3><p>Temuan fisik, diagnosis, dan tindakan</p></div></div>
+            <div class="exam-form-grid">
+              <label class="form-field form-field-wide"><span>Pemeriksaan fisik</span><textarea name="physicalExam" rows="3" maxlength="1500" placeholder="Temuan pemeriksaan fisik"></textarea></label>
+              <label class="form-field"><span>Diagnosis utama <i>*</i></span><textarea name="primaryDiagnosis" rows="2" maxlength="500" required placeholder="Diagnosis utama"></textarea></label>
+              <label class="form-field"><span>Diagnosis tambahan</span><textarea name="additionalDiagnosis" rows="2" maxlength="800" placeholder="Diagnosis penyerta bila ada"></textarea></label>
+              <label class="form-field form-field-wide"><span>Tindakan medis</span><textarea name="medicalActions" rows="2" maxlength="1000" placeholder="Tindakan atau prosedur yang diberikan"></textarea></label>
+            </div>
+          </section>
+          <section class="exam-form-section">
+            <div class="exam-section-heading"><span class="exam-section-number">04</span><div><h3>Rencana dan catatan dokter</h3><p>Rencana tindak lanjut pelayanan pasien</p></div></div>
+            <div class="exam-form-grid">
+              <label class="form-field"><span>Rencana pengobatan</span><textarea name="treatmentPlan" rows="3" maxlength="1200" placeholder="Rencana terapi dan kontrol"></textarea></label>
+              <label class="form-field"><span>Catatan dokter</span><textarea name="doctorNotes" rows="3" maxlength="1200" placeholder="Catatan tambahan"></textarea></label>
+            </div>
+          </section>
+          <section class="exam-form-section prescription-section">
+            <div class="exam-section-heading prescription-heading"><span class="exam-section-number">05</span><div><h3>Resep obat</h3><p>Tambahkan obat jika diperlukan</p></div><button class="button button-secondary add-prescription-button" id="addPrescription" type="button">＋ Tambah obat</button></div>
+            <div id="prescriptionRows" class="prescription-rows"></div>
+            <p class="prescription-empty" id="prescriptionEmpty">Belum ada obat yang ditambahkan.</p>
+          </section>
+        </fieldset>
+        <div class="exam-form-actions" id="examFormActions"><p><i>*</i> Wajib diisi untuk menyimpan pemeriksaan.</p><div><button class="button button-secondary" type="submit" id="saveExamButton">Simpan Pemeriksaan</button><button class="button button-primary" type="button" id="completeExamButton">Selesaikan Pemeriksaan <span>→</span></button></div></div>
+      </form>
+      <div class="exam-form-message" id="examFormMessage" role="status" aria-live="polite" hidden></div>
+    </section>
+    <section class="panel exam-history-panel">
+      <div class="panel-heading"><div><h2>Riwayat pemeriksaan</h2><p>Catatan yang sudah disimpan dapat dibuka kembali.</p></div><span class="history-count" id="examHistoryCount">0 catatan</span></div>
+      <div class="table-wrap"><table class="data-table exam-history-table"><thead><tr><th>TANGGAL</th><th>PASIEN / NO. RM</th><th>POLIKLINIK</th><th>DIAGNOSIS UTAMA</th><th>DOKTER</th><th>AKSI</th></tr></thead><tbody id="examHistoryTable"></tbody></table><div class="empty-state" id="examHistoryEmpty"><span>▤</span><strong>Belum ada riwayat pemeriksaan</strong><p>Catatan akan muncul setelah dokter menyimpan pemeriksaan pasien.</p></div></div>
+    </section>
+    <div class="toast-message visit-toast" id="examinationToast" role="status" aria-live="polite"></div>
+    <footer class="page-footer">© <span data-year></span> SIMRS SASA <span>·</span> Rumah Sakit Sehat Abadi</footer>
+  </div></main></div><script src="script.js"></script></body></html>
